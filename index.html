@@ -1,0 +1,204 @@
+<style>
+
+  .madlib {
+    position: absolute;
+		left: 40vw;
+    top: 5vw;
+    font-family: lucida-console;
+    font-size: 5vw;
+    text-wrap: overflow;
+  }
+  
+  .button {
+    position: absolute;
+    left: 45vw;
+    top: 12vw;
+    font-family: lucida-console;
+    font-size: 3vw;
+    display: block;
+  }
+  
+  .mlText {
+    position: absolute;
+    left: 5vw;
+    top: 20vw;
+    font-family: lucida-console;
+    font-size: 5vw;
+    text-align: center;
+  }
+  
+  .special {
+    font-family: lucida-console;
+    font-size: 5vw;
+    color: #FF35F6;
+    text-align: center;
+  }
+
+</style>
+
+<div class="madlib">MADLIBS</div>
+
+<button class="button">generate</button>
+<div class="mlText"></div>
+
+<script src="words.js"></script>
+<script src="madlibs.js"></script>
+
+<script>
+  
+  function countInstances (string, word) {
+   return string.split(word).length - 1;
+	}
+	
+  let madlib = document.querySelector('.madlib')
+  const button = document.querySelector('.button')
+  
+  let genIngVerbs = []
+  let genCourses = []
+  let genAdjectives = []
+  let genNouns = []
+  let genEdVerbs = []
+  let genFeelings = []
+  let genPeople = []
+  let genPlaces = []
+
+  function randomItem (arr) {
+    const n = Math.floor(Math.random() * arr.length)
+    return arr[n]
+  }
+  
+  let chosenML = randomItem(madlibs)
+  
+  function blankMadLib () {
+    
+    let blankML = chosenML
+    
+    const numIngVerbs = countInstances(chosenML, '{{-ing verb}}')
+    const numCourses = countInstances(chosenML, '{{course}}')
+    const numAdjectives = countInstances(chosenML, '{{adj}}')
+    const numNouns = countInstances(chosenML, '{{pl noun}}')
+    const numEdVerbs = countInstances(chosenML, '{{-ed verb}}')
+    const numFeelings = countInstances(chosenML, '{{feeling}}')
+    const numPeople = countInstances(chosenML, '{{person}}')
+		const numPlaces = countInstances(chosenML, '{{place}}')
+    
+    for (let a = 0; a < numIngVerbs; a++) {
+			const ingVerb = randomItem(ingVerbs)
+      genIngVerbs.push(ingVerb)
+    }
+    
+    for (let b = 0; b < numCourses; b++) {
+			const course = randomItem(courses)
+      genCourses.push(course)
+    }
+    
+    for (let c = 0; c < numAdjectives; c++) {
+			const adj = randomItem(adjectives)
+      genAdjectives.push(adj)
+    }
+    
+    for (let d = 0; d < numNouns; d++) {
+			const noun = randomItem(nouns)
+      genNouns.push(noun)
+    }
+    
+    for (let e = 0; e < numEdVerbs; e++) {
+			const edVerb = randomItem(edVerbs)
+      genEdVerbs.push(edVerb)
+    }
+    
+    for (let f = 0; f < numFeelings; f++) {
+			const feeling = randomItem(feelings)
+      genFeelings.push(feeling)
+    }
+    
+    for (let g = 0; g < numPeople; g++) {
+			const person = randomItem(people)
+      genPeople.push(person)
+    }
+    
+    for (let h = 0; h < numPlaces; h++) {
+			const place = randomItem(places)
+      genPlaces.push(place)
+    }
+    
+    madlib = document.querySelector('.mlText')
+    madlib.textContent = blankML
+    button.textContent = 'complete'
+    button.onclick = showMadLib
+
+  }
+  
+  function showMadLib () {
+  
+    blankMadLib()
+    
+    for (let a = 0; a < genIngVerbs.length; a++) {
+      let word = `<span class="special">${genIngVerbs[a]}</span>`
+			chosenML = chosenML.replace('{{-ing verb}}', word)
+    }
+    
+    for (let b = 0; b < genCourses.length; b++) {
+      let word = `<span class="special">${genCourses[b]}</span>`
+			chosenML = chosenML.replace('{{course}}', word)
+    }
+    
+    for (let c = 0; c < genAdjectives.length; c++) {
+      let word = `<span class="special">${genAdjectives[c]}</span>`
+			chosenML = chosenML.replace('{{adj}}', word)
+    }
+    
+    for (let d = 0; d < genNouns.length; d++) {
+      let word = `<span class="special">${genNouns[d]}</span>`
+			chosenML = chosenML.replace('{{pl noun}}', word)
+    }
+    
+    for (let e = 0; e < genEdVerbs.length; e++) {
+    	let word = `<span class="special">${genEdVerbs[e]}</span>`
+			chosenML = chosenML.replace('{{-ed verb}}', word)
+    }
+    
+    for (let f = 0; f < genFeelings.length; f++) {
+      let word = `<span class="special">${genFeelings[f]}</span>`
+			chosenML = chosenML.replace('{{feeling}}', word)
+    }
+    
+    for (let g = 0; g < genPeople.length; g++) {
+      let word = `<span class="special">${genPeople[g]}</span>`
+			chosenML = chosenML.replace('{{person}}', word)
+    }
+    
+    for (let h = 0; h < genPlaces.length; h++) {
+      let word = `<span class="special">${genPlaces[h]}</span>`
+			chosenML = chosenML.replace('{{place}}', word)
+    }
+    
+    madlib.innerHTML = chosenML
+    button.textContent = 'reset'
+    button.onclick = reset
+    
+  }
+  
+  function reset () {
+    chosenML = randomItem(madlibs)
+    
+    genIngVerbs = []
+		genCourses = []
+		genAdjectives = []
+		genNouns = []
+		genEdVerbs = []
+		genFeelings = []
+		genPeople = []
+		genPlaces = []
+    
+    blankMadLib()
+  }
+ 	
+  function setup () {
+    button.onclick = blankMadLib
+    button.display = 'none'
+  }
+  
+  window.addEventListener('load', setup)
+
+</script>
