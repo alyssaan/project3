@@ -2,7 +2,7 @@ const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughi
 
 const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 'Principles of Microeconomics', 'Philosophical Perspectives']
 
-const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 'ambitious', 'oily']
+const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 'thick', 'sour', 'oily']
 
 const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 'napkins', 'plates']
 
@@ -12,6 +12,6 @@ const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enra
 
 const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos', 'Professor Satrom', 'Professor Jagoda']
  
-const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
+const places = ['the Reg', 'Harper', 'Cobb', 'the MADD Center', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel', 'Botany Pond']
     
 
